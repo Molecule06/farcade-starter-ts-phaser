@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@farcade/game-sdk": "^0.2",
-    "@insidethesim/remix-dev": "^0.0.2",
+    "@insidethesim/remix-dev": "^0.0.3",
     "typescript": "^5.9.2",
     "vite": "^6.3.6"
   },
