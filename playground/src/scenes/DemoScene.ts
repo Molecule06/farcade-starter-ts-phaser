@@ -222,10 +222,8 @@ export class DemoScene extends Phaser.Scene {
   }
 
   private async initializeSDK(): Promise<void> {
-    console.log('[DemoScene] initializeSDK() called, FarcadeSDK exists:', !!window.FarcadeSDK)
     if (!window.FarcadeSDK) {
       // No SDK, create elements immediately
-      console.log('[DemoScene] No SDK found, creating elements immediately')
       this.createGameElements()
       return
     }
@@ -336,9 +334,7 @@ export class DemoScene extends Phaser.Scene {
     } else {
       // Single player - call ready and await the game_info response
       try {
-        console.log('[DemoScene] Calling SDK.singlePlayer.actions.ready()')
         const data = await window.FarcadeSDK.singlePlayer.actions.ready()
-        console.log('[DemoScene] Received game_info:', data)
         if (data?.initialGameState?.gameState) {
           const state = data.initialGameState.gameState
           if (state.selectedColor) {
