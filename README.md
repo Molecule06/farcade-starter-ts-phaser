@@ -1,325 +1,278 @@
-# Remix Game Template - Phaser.js + TypeScript
+# Remix Game Development Framework
 
 ## Overview
 
-A TypeScript and Phaser.js template for creating mobile games on the Remix platform. Features 2:3 aspect ratio for exact mini-app dimensions, professional development environment with SDK testing, and comprehensive HTML5 game tooling.
+A monorepo containing the Remix game development framework for creating mobile games on the Remix/Farcaster platform. Features TypeScript, Phaser.js, 2:3 aspect ratio for mini-apps, and a professional development environment with SDK testing tools.
 
-## Features
+## Quick Start
 
-- 📱 Mobile-first 2:3 aspect ratio design
-- 🎮 Phaser.js framework (CDN-loaded)
-- 🔧 TypeScript support with type safety
-- 🔄 Hot-reload dev server with QR code mobile testing
-- 🎛️ **Professional Development Environment**:
-  - Advanced SDK integration testing with 2x2 grid status indicators
-  - Real-time performance monitoring with interactive FPS charts
-  - Phone frame simulation with game overlay
-  - Intelligent canvas scaling with mobile-optimized responsive design
-  - Build your game and copy the minified HTML code without leaving the dashboard
-- 📦 Optimized Remix platform build process
-- 🎨 Test game scene to show successful setup
-- ⚒️ Setup script to get you running in 1 easy command
+Create a new Remix game with one command:
 
-## What You Need Before Starting
-
-### Required Software:
-1. **Node.js** - Download LTS version from [nodejs.org](https://nodejs.org)
-   - Includes `npm` package manager
-   - Install via downloaded installer or package manager
-
-2. **Code Editor** (recommended):
-   - [Visual Studio Code](https://code.visualstudio.com) - free, beginner-friendly
-   - [Cursor](https://cursor.sh) - VS Code with AI assistance
-
-3. **Terminal/Command Line** - You'll need to navigate folders and run commands
-
-## ⚠️ Important Notes
-
-- **Phaser.js is loaded from CDN**: The game framework is loaded in `index.html`, so Phaser is globally available. **Never add Phaser imports** to your TypeScript files - this will break your game.
-- **Mobile-First**: This template is designed for Farcaster mini-apps with a 2:3 aspect ratio.
-- **Development Environment**: The template includes a comprehensive development overlay that simulates the Remix platform environment.
-
-## Quick Start (Step-by-Step)
-
-### Step 1: Get the Template
 ```bash
-# Option A: Clone with git (if you have git installed)
-git clone https://github.com/InsideTheSim/remix-starter-ts-phaser my-game-name
-cd my-game-name
-
-# Option B: Download as ZIP
-# Download the ZIP file from GitHub, extract it, and open Terminal/Command Prompt in that folder. 
-# Download available at:
-https://github.com/InsideTheSim/remix-starter-ts-phaser
-```
-
-### Step 2: Run Setup
-```bash
-npm run remix-setup
-```
-
-**What this does:**
-- Detects your package manager (npm/yarn/pnpm/bun)
-- Safely removes template git history
-- Installs dependencies and creates fresh git repo
-- Removes safety marker file
-
-**⚠️ Safety:** Only runs once on fresh templates. Once run, cannot be run again.
-
-### Step 3: Start Development
-```bash
+npx create-remix-game my-awesome-game
+cd my-awesome-game
 npm run dev
 ```
 
-**What happens:**
-- Server starts at `localhost:3000` with QR code for mobile testing
-- Browser opens with **Remix Development Overlay**:
-  - Mini-app simulation (2:3 aspect ratio)
-  - Remix SDK status panel (red/yellow/green indicators)
-  - Full/Actual size toggle for testing game at actual mini-app scale
-  - Remix "Game Over" Overlay simulation to test game restart loop
-- File changes auto-refresh browser
+That's it! Your development server will start with:
+- Live reload and hot module replacement
+- **Remix Development Dashboard** with SDK integration testing
+- QR code for mobile testing
+- Real-time performance monitoring
+- Build tools integrated into the dashboard
 
-### Step 4: Test on Your Phone
-1. Make sure your phone is on the same Wi-Fi network as your computer
-2. Scan the QR code that appears in your terminal
-3. The game opens in your phone's browser
-4. Test your touch controls
+## What You Get
 
-<details>
-<summary><strong>📦 Porting an Existing Game (Click to expand)</strong></summary>
+### Core Features
 
-If you have an existing game that you want to port to this starter template then follow these steps:
+- 📱 **Mobile-first** - 2:3 aspect ratio (720x1080) for Farcaster mini-apps
+- 🎮 **Phaser.js** - HTML5 game framework (CDN-loaded, no imports needed)
+- 🔧 **TypeScript** - Full type safety with Phaser type definitions
+- ⚡ **Vite 7** - Fast build tool with instant HMR
+- 🔄 **Hot Reload** - See changes instantly in browser and mobile
 
-### Step 1: Complete the Quick Start Setup
-Follow the Quick Start steps above to set up the template first.
+### Professional Development Environment
 
-### Step 2: Prepare Your Existing Game Code
-1. Create a new folder in the project root called `src_prev` (as a sibling to the `src` folder):
-   ```bash
-   mkdir src_prev
-   ```
+- 🎛️ **SDK Integration Testing**
+  - Visual 2x2 grid status indicators (ready, game_over, play_again, toggle_mute)
+  - Real-time event tracking with detailed status panels
+  - SDK mock for local development (no platform needed)
 
-2. Copy all your existing game files into the `src_prev` folder:
-   ```
-   your-project/
-   ├── src/                    # New template structure
-   ├── src_prev/           # Your existing game code
-   │   ├── scenes/
-   │   ├── objects/
-   │   ├── assets/
-   │   └── ... (all your existing files)
-   └── ...
-   ```
+- 📊 **Performance Monitoring**
+  - Live FPS charts with interactive hover details
+  - Memory usage tracking (heap + optional texture memory)
+  - Frame timing metrics (update/render split)
+  - Rendering statistics (draw calls, game objects, physics bodies)
+  - Jank event detection for performance bottlenecks
 
-### Step 3: Ask Your LLM Assistant to Help Migrate
-Once your existing code is in the `src_prev` folder, ask your AI assistant (like Claude Code) to help you migrate:
+- 🛠️ **Integrated Build System**
+  - One-click builds from the dashboard
+  - Instant HTML preview and copy
+  - Production-ready single-file output
 
-> "I have an existing Phaser.js game in the `src_prev` folder that I want to port to this Remix template. Please help me migrate the code into the proper `src` structure, ensuring it works with the 2:3 aspect ratio and Remix platform requirements. Please analyze my existing game structure and guide me through the migration process."
+- 📱 **Mobile Development**
+  - QR code generation for instant phone testing
+  - Phone frame simulation with game overlay
+  - Touch-optimized controls and layout
+  - Same Wi-Fi network testing
 
-### ⚠️ Important Migration Reality Check:
-**Things WILL break during migration!** This is completely normal and expected. Game porting is an iterative process that requires multiple rounds of fixes:
+### Developer Experience
 
-- **Expect compilation errors** - TypeScript and build issues are common
-- **Expect runtime crashes** - Games may not start immediately after migration
-- **Expect visual/gameplay issues** - Aspect ratio changes affect game layout
-- **Be prepared for multiple LLM conversations** - You'll need to ask follow-up questions like:
-  - "Fix this TypeScript error: [paste error]"
-  - "The game crashes with this error: [paste error]"
-  - "Help me adjust the UI layout for 5:9 aspect ratio"
-  - "My touch controls aren't working, can you help?"
+- 🎨 Demo game scene with interactive examples
+- 🔍 TypeScript IntelliSense for Phaser (via global types)
+- 🎯 Mobile-optimized responsive design
+- 🌐 Multi-platform support (npm, pnpm, yarn, bun)
+- 📦 Single HTML file output for easy deployment
 
-**Migration is a collaborative process** - Plan to spend time working with your AI assistant to resolve issues step by step. Don't expect a perfect one-shot migration.
+## Project Structure
 
-### Migration Considerations:
-- **Aspect Ratio**: Your game will need to adapt to the 2:3 mobile format
-- **Asset Loading**: Assets may need to be restructured for the build process
-- **Phaser Imports**: Remove any Phaser imports since it's loaded globally via CDN
-- **Platform Integration**: Add Remix SDK integration for platform features
-- **Mobile Optimization**: Ensure touch controls and mobile performance
-- **Development Testing**: Use the new development overlay to verify SDK integration
+After running `npx create-remix-game`, you'll get:
 
-### Step 4: Clean Up
-After successful migration, you can remove the `src_prev` folder:
-```bash
-rm -rf src_prev
 ```
-
-**💡 Pro Tip**: Keep your original game backup in a separate location until you're confident the migration is complete and working properly.
-
-</details>
-
-## Development Environment
-
-### Understanding the Development Overlay
-
-The template includes a comprehensive development environment that simulates the Remix platform:
-
-#### **Visual SDK Integration Testing**
-- **2x2 Grid Status Indicator**: Visual grid showing individual integration status at a glance
-  - Each mini-light represents one SDK event: `ready`, `game_over`, `play_again`, `toggle_mute`
-  - 🔴 Red: Event not triggered yet
-  - 🟢 Green: Event has been triggered
-- **Detailed Status Panel**: Hover or tap "Remix SDK integration" to see detailed event status
-- **Real-time Updates**: Both grid and panel update instantly when SDK events are triggered
-
-#### **Real-time Performance Monitoring**
-- **Live FPS Chart**: Centered performance chart showing frame rate in real-time
-- **Interactive Performance Panel**: Hover over chart to see detailed metrics:
-  - **Frame Rate**: Current, average, and min/max FPS with sparkline visualization
-  - **Frame Timing**: Frame time, update time, and render time (Phaser plugin integration)
-  - **Memory Usage**: JavaScript heap usage with optional texture memory tracking
-  - **Rendering Stats**: Draw calls, game objects, physics bodies, and active tweens
-  - **Performance Health**: Jank event tracking for performance bottlenecks
-- **Tier-based Monitoring**: Automatic detection of available performance data sources
-- **Mobile-optimized**: Chart scales appropriately for different screen sizes
-
-#### **Enhanced Settings Panel**
-- **Device-specific Settings**: Canvas glow setting only appears on supported devices
-- **Canvas Scaling Toggle**: Control whether game scales to fill screen or shows at native size
-- **Background Pattern Toggle**: Show/hide decorative background texture
-- **Consistent Design**: All settings use unified green color theme matching SDK integration status
-
-#### **Integrated Build System**
-- **One-Click Building**: Build your game instantly without leaving the dashboard
-
-#### **Responsive Design Improvements**
-- **Mobile-first Layout**: Optimized toolbar spacing and button sizing for touch interfaces
-- **Intelligent Canvas Sizing**: "Actual size" mode respects screen boundaries while maintaining aspect ratio
-- **Natural Content Flow**: Flexbox layout allows each section to occupy space as needed
-- **Consistent Spacing**: Unified padding and margin system across all screen sizes
-
-### Console Logging
-The development environment provides clean, focused logging:
-```
-[SDK Event] ready
-[SDK Event] game_over {"score":3}
-[SDK Event] play_again 
-[SDK Event] toggle_mute {"isMuted":true}
-```
-
-## Customizing Your Game
-
-### Remove the Demo Content
-When you're ready to build your actual game, ask an AI assistant (like Claude Code):
-
-> "Please remove the demo code and give me a blank game scene to start building my game."
-
-### Project Structure Explained
-```
-your-game/
-├── .is_fresh              # Safety marker (removed after setup)
-├── index.html             # Main HTML file - loads Phaser and Remix SDK
-├── package.json           # Project info and available commands
-├── .remix/                # Development environment (hidden directory)
-│   ├── overlay.ts         # Development overlay entry point
-│   ├── game.ts           # Development game entry point with SDK mock
-│   ├── RemixDevOverlay.ts # Professional development UI with performance monitoring
-│   ├── PerformanceMonitor.ts # Real-time performance tracking system
-│   ├── performance-plugin.js # Phaser plugin for detailed game metrics
-│   ├── dev-settings.ts   # Settings panel with device-specific options
-│   ├── RemixSDKMock.ts   # SDK mock for testing
-│   ├── remix-dev-overlay.css # Development UI styles
-│   └── remix-game-styles.css # Game frame styles
-├── src/                   # Your game code goes here
-│   ├── main.ts           # Game entry point - creates Phaser game
+my-game/
+├── index.html             # Main HTML - loads Phaser and Remix SDK
+├── package.json           # Project config and scripts
+├── tsconfig.json          # TypeScript configuration
+├── vite.config.ts         # Vite + Remix plugin config
+├── .gitignore             # Git ignore rules
+├── src/
+│   ├── main.ts           # Game entry point
 │   ├── config/
-│   │   └── GameSettings.ts # Game settings (720x1080, debug mode, etc.)
+│   │   └── GameSettings.ts  # Canvas size, debug mode, etc.
 │   ├── scenes/
-│   │   └── GameScene.ts   # Main game scene (click-to-progress demo)
-│   ├── utils/
-│   │   └── RemixUtils.ts  # Remix platform integration
-│   └── types.ts          # TypeScript type definitions
-├── scripts/               # Build and development scripts
-└── dist/                 # Built game files (created when you run build)
+│   │   ├── DemoScene.ts     # Interactive demo (remove when ready)
+│   │   └── GameScene.ts     # Your game scene
+│   └── utils/            # Utility functions
+└── dist/                 # Production build (created by `npm run build`)
 ```
 
-### Key Files to Understand:
-- **`src/main.ts`**: Creates the Phaser game with your settings
-- **`src/scenes/GameScene.ts`**: Where your game logic lives (currently 3-click demo)
-- **`src/config/GameSettings.ts`**: Adjust canvas size (720x1080), debug mode, etc.
-- **`index.html`**: Loads Phaser and Remix SDK, conditionally loads development environment
-- **`.remix/`**: Development environment tooling — not included in production builds
+### Key Files
+
+- **`src/main.ts`** - Creates Phaser game and initializes Remix SDK
+- **`src/scenes/DemoScene.ts`** - Full-featured demo with SDK integration examples
+- **`src/config/GameSettings.ts`** - Game configuration (720x1080 canvas, etc.)
+- **`vite.config.ts`** - Uses `@insidethesim/remix-dev/vite` plugin
+- **`index.html`** - Loads Phaser (CDN) and Remix SDK
 
 ## Available Commands
 
 ```bash
-npm run remix-setup # Sets up fresh project
-npm run dev         # Start development server (most common)
-npm run build       # Build for production (creates dist/index.html)
-npm run preview     # Preview the built game locally — good for checking build-specific errors such as missing assets
+npm run dev      # Start development server with dashboard
+npm run build    # Build for production (creates dist/index.html)
+npm run preview  # Preview production build locally
 ```
 
-## Common Development Workflow
+## Development Workflow
 
-1. **Start Development**: `npm run dev`
-2. **Edit Code**: Make changes in `src/` folder
-3. **See Changes**: Browser refreshes automatically
-4. **Test on Mobile**: Scan QR code with phone
-5. **Build for Production**: `npm run build` when ready
-6. **Deploy**: Copy contents of `dist/index.html` to Remix platform
+1. **Create a game**: `npx create-remix-game my-game`
+2. **Start development**: `npm run dev`
+3. **Edit code**: Make changes in `src/` - browser auto-refreshes
+4. **Test on mobile**: Scan QR code from terminal
+5. **Remove demo**: Ask your AI assistant to remove the demo scene
+6. **Build your game**: Implement your game logic in `src/scenes/`
+7. **Build for production**: `npm run build`
+8. **Deploy**: Copy `dist/index.html` to Remix platform
+
+## Removing the Demo
+
+When ready to build your game, ask your AI assistant (Claude Code, Cursor, etc.):
+
+> "Remove the demo code and create a minimal GameScene for me to start building my game."
+
+The demo scene includes comprehensive SDK integration examples, but you can start fresh with a blank canvas.
+
+## Important Notes
+
+⚠️ **Phaser is CDN-loaded** - Never import Phaser in your TypeScript files:
+
+```typescript
+// ❌ WRONG - Don't do this!
+import Phaser from 'phaser'
+
+// ✅ CORRECT - Phaser is globally available
+export class MyScene extends Phaser.Scene {
+  // Just use it directly
+}
+```
+
+⚠️ **Mobile-first design** - This template targets Farcaster mini-apps with 2:3 aspect ratio (720x1080).
+
+⚠️ **SDK Integration** - The development environment includes a mock SDK. In production, the real Farcaster SDK will be loaded by the platform.
+
+## Porting Existing Games
+
+<details>
+<summary><strong>Click to expand porting guide</strong></summary>
+
+### Prerequisites
+1. Create a new project: `npx create-remix-game my-game`
+2. Create `src_prev/` folder: `mkdir src_prev`
+3. Copy your existing game files into `src_prev/`
+
+### Migration with AI Assistant
+
+Ask your AI assistant:
+
+> "I have an existing Phaser.js game in `src_prev/` that I want to port to this Remix template. Please help me migrate the code to work with the 2:3 aspect ratio and Remix SDK."
+
+### Reality Check
+
+**Migration will have issues!** This is normal:
+
+- ✅ Compilation errors (TypeScript, imports)
+- ✅ Runtime crashes (missing dependencies)
+- ✅ Layout issues (aspect ratio changes)
+- ✅ Multiple iterations needed
+
+**Be prepared to ask follow-ups:**
+- "Fix this TypeScript error: [paste error]"
+- "The game crashes: [paste error]"
+- "Adjust UI for 2:3 aspect ratio"
+- "Touch controls aren't working"
+
+### Cleanup
+
+After successful migration:
+```bash
+rm -rf src_prev
+```
+
+Keep a backup of your original game until confident the migration works!
+
+</details>
 
 ## Troubleshooting
 
-### Common Issues:
-
 **"Command not found: npm"**
-- Install Node.js from [nodejs.org](https://nodejs.org)
-- Restart your terminal after installation
+- Install [Node.js](https://nodejs.org) (includes npm)
+- Restart terminal after installation
 
-**"npm run remix-setup fails"**
-- Make sure you're in the correct folder (should contain `package.json`)
-- Check that the `.is_fresh` file exists (if missing, you may have already run setup)
-
-**"Port 3000 is already in use"**
-- Use `npm run dev:3001` or `npm run dev:any` for different ports
-- Or stop other servers using port 3000
+**"Port 3000 is in use"**
+- Another dev server is running
+- Kill other processes or use a different port
 
 **"Game doesn't load on mobile"**
-- Ensure your phone and computer are on the same Wi-Fi network
-- Try refreshing the page or scanning the QR code again
-- Check that no firewall is blocking the connection
+- Check phone and computer are on same Wi-Fi
+- Check firewall settings
+- Try refreshing or re-scanning QR code
 
 **"TypeScript errors about Phaser"**
-- Never import Phaser in your TypeScript files
-- Phaser is loaded globally via CDN in `index.html`
-- Remove any `import Phaser from 'phaser'` lines
-- You can ask your LLM to resolve this for you
+- Remove any `import Phaser from 'phaser'` statements
+- Phaser is loaded globally via CDN
+- Ask your AI assistant to fix it
 
-### Building for Production
+## Building for Production
+
 ```bash
 npm run build
 ```
-This creates `dist/index.html` - a single file containing your entire game ready for Remix deployment.
 
-## Deployment to Remix
+This creates `dist/index.html` - a single self-contained file with your entire game.
 
-1. **Build**: Run `npm run build`
-2. **Copy**: Open `dist/index.html` and copy all contents
-3. **Paste**: Paste into Remix platform
-4. **Test**: Verify everything works on the platform
-5. **Publish**: Release your game to players
+### Deployment to Remix
 
-## What's Included
+1. Build: `npm run build`
+2. Open: `dist/index.html`
+3. Copy: Select all and copy contents
+4. Paste: Into Remix platform editor
+5. Test: Verify game works on platform
+6. Publish: Release to players!
 
-- **Phaser**: HTML5 game framework (loaded via CDN)
-- **TypeScript**: Type-safe development with proper Phaser types
-- **Vite**: Fast build tool and dev server with hot reload
-- **Remix SDK**: Platform integration with comprehensive testing tools
-- **Mobile optimization**: 2:3 aspect ratio for proper mini-app scaling
-- **Professional Development Environment**:
-  - **Advanced SDK Testing**: 2x2 grid status indicators with detailed hover panel
-  - **Real-time Performance Monitoring**: Live FPS charts, memory tracking, and performance metrics
-  - **Intelligent Settings Panel**: Device-specific options with consistent theming
-  - **Responsive Design**: Mobile-optimized layout with intelligent canvas sizing
-  - **Interactive Overlays**: Game over simulation and settings management
-  - **Multi-tier Monitoring**: Automatic detection of available performance data sources
+## Development Environment Features
 
-## Getting Help:
+### SDK Integration Testing
 
-- Copy and paste any error output to your LLM.
-- Join the [Remix Discord Server](https://discord.com/invite/a3bgdr4RC6) 
+Console logging shows SDK events in real-time:
+```
+[SDK Event] ready
+[SDK Event] game_over {"score":3}
+[SDK Event] play_again
+[SDK Event] toggle_mute {"isMuted":true}
+```
+
+Dashboard shows:
+- 🔴 Red indicator: Event not triggered yet
+- 🟢 Green indicator: Event triggered successfully
+
+### Performance Monitoring
+
+Live metrics available in dashboard:
+- **FPS**: Current, average, min/max with sparkline
+- **Frame timing**: Update vs render time
+- **Memory**: Heap usage with optional texture tracking
+- **Rendering**: Draw calls, objects, physics bodies
+- **Jank detection**: Performance bottleneck alerts
+
+### Settings Panel
+
+- Canvas scaling (fill screen vs actual size)
+- Background pattern toggle
+- Device-specific settings (canvas glow on supported devices)
+
+## Monorepo Structure
+
+This repository contains:
+
+- **`@insidethesim/remix-dev`** - Development framework package
+- **`create-remix-game`** - CLI scaffolding tool
+- **`playground/`** - Internal testing workspace
+
+Users don't interact with the monorepo directly - they use `npx create-remix-game` to scaffold new projects.
+
+## Getting Help
+
+- 💬 Join the [Remix Discord Server](https://discord.com/invite/a3bgdr4RC6)
+- 🤖 Ask your AI assistant (Claude Code, Cursor, etc.)
+- 📝 Copy/paste error messages to your LLM for help
 
 ## License
 
-MIT License - See LICENSE file for details
+ISC License - See LICENSE file for details
+
+---
+
+**Ready to build?**
+
+```bash
+npx create-remix-game my-awesome-game
+```
