@@ -1,0 +1,28 @@
+{
+  "name": "{{PROJECT_NAME}}",
+  "version": "1.0.0",
+  "description": "{{GAME_NAME}} game for Remix platform",
+  "type": "module",
+  "multiplayer": {{MULTIPLAYER}},
+  "scripts": {
+    "dev": "remix-dev dev",
+    "build": "remix-dev build",
+    "preview": "remix-dev preview"
+  },
+  "keywords": [
+    "game",
+    "phaser",
+    "remix"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@farcade/game-sdk": "^0.2",
+    "@insidethesim/remix-dev": "^0.1.0",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.6"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  }
+}

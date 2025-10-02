@@ -1,0 +1,34 @@
+{
+  "name": "@insidethesim/remix-game",
+  "version": "0.1.0",
+  "description": "CLI for scaffolding Remix games",
+  "type": "module",
+  "bin": {
+    "remix-game": "./bin/remix-game.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "fs-extra": "^11.2.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.18.6",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.9.2"
+  }
+}

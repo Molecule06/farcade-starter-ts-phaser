@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{GAME_NAME}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      canvas {
+        outline: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      // Development only - build script replaces this entire block
+      if (import.meta.env.DEV) {
+        import('@insidethesim/remix-dev/dev-init')
+        import('/src/main.ts')
+      }
+    </script>
+  </body>
+</html>

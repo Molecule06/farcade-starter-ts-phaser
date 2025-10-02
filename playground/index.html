@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        outline: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      // Development only - build script replaces this entire block
+      if (import.meta.env.DEV) {
+        import('@insidethesim/remix-dev/src/main.css')
+        import('@insidethesim/remix-dev/dev-init')
+
+        // Only load the game in iframe, not in top window (dashboard handles iframes)
+        if (window !== window.top) {
+          import('/src/main.ts')
+        }
+      }
+    </script>
+  </body>
+</html>

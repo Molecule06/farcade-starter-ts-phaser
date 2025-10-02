@@ -1,45 +1,34 @@
 {
-  "name": "GAME_NAME",
+  "name": "remix-starter-monorepo",
   "version": "1.0.0",
-  "description": "GAME_NAME game for Remix platform",
+  "description": "Monorepo for Remix game development framework",
+  "private": true,
   "type": "module",
-  "multiplayer": false,
   "scripts": {
-    "remix-setup": "node scripts/setup.js",
-    "dev": "node scripts/dev-server.js",
-    "dev:its": "node scripts/dev-server-its.js",
-    "preview": "vite preview",
-    "build": "node scripts/build.js"
+    "dev": "pnpm --filter playground dev",
+    "dev:playground": "pnpm --filter playground dev",
+    "build": "pnpm -r build",
+    "build:remix-dev": "pnpm --filter @insidethesim/remix-dev build",
+    "build:remix-game": "pnpm --filter @insidethesim/remix-game build",
+    "clean": "pnpm -r clean",
+    "sync:playground": "node scripts/sync-playground.js",
+    "test:cli": "pnpm --filter @insidethesim/remix-game build && node packages/remix-game/bin/remix-game.js",
+    "test:cli:local": "pnpm build:remix-game && node scripts/test-cli-local.js",
+    "publish:remix-dev": "pnpm --filter @insidethesim/remix-dev publish",
+    "publish:remix-game": "pnpm --filter @insidethesim/remix-game publish",
+    "publish:all": "pnpm build && pnpm --filter @insidethesim/remix-dev publish && pnpm --filter @insidethesim/remix-game publish"
   },
   "keywords": [
     "game",
     "phaser",
     "farcade",
-    "remix"
+    "remix",
+    "monorepo"
   ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@farcade/game-sdk": "^0.2",
-    "@tailwindcss/vite": "^4.1.13",
-    "@types/node": "^22.18.6",
-    "@types/react": "^19.1.15",
-    "@types/react-dom": "^19.1.9",
-    "@types/styled-components": "^5.1.34",
-    "@vitejs/plugin-react": "^5.0.4",
-    "cheerio": "^1.1.2",
-    "clsx": "^2.1.1",
-    "esbuild": "^0.20.2",
-    "qrcode-terminal": "^0.12.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "styled-components": "^6.1.19",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2",
-    "vite": "^6.3.6"
-  },
-  "dependencies": {
-    "phaser": "^3.90.0"
+    "fs-extra": "^11.2.0",
+    "typescript": "^5.9.2"
   }
 }

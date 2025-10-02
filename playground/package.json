@@ -1,0 +1,29 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "Development playground for testing Remix framework",
+  "type": "module",
+  "private": true,
+  "multiplayer": false,
+  "scripts": {
+    "dev": "remix-dev dev",
+    "build": "remix-dev build",
+    "preview": "remix-dev preview"
+  },
+  "keywords": [
+    "game",
+    "phaser",
+    "remix"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@farcade/game-sdk": "^0.2",
+    "@insidethesim/remix-dev": "workspace:*",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.6"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  }
+}
