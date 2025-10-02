@@ -9,14 +9,14 @@
     "dev:playground": "pnpm --filter playground dev",
     "build": "pnpm -r build",
     "build:remix-dev": "pnpm --filter @insidethesim/remix-dev build",
-    "build:remix-game": "pnpm --filter @insidethesim/remix-game build",
+    "build:remix-game": "pnpm --filter create-remix-game build",
     "clean": "pnpm -r clean",
     "sync:playground": "node scripts/sync-playground.js",
-    "test:cli": "pnpm --filter @insidethesim/remix-game build && node packages/remix-game/bin/remix-game.js",
+    "test:cli": "pnpm --filter create-remix-game build && node packages/remix-game/bin/remix-game.js",
     "test:cli:local": "pnpm build:remix-game && node scripts/test-cli-local.js",
     "publish:remix-dev": "pnpm --filter @insidethesim/remix-dev publish",
-    "publish:remix-game": "pnpm --filter @insidethesim/remix-game publish",
-    "publish:all": "pnpm build && pnpm --filter @insidethesim/remix-dev publish && pnpm --filter @insidethesim/remix-game publish"
+    "publish:remix-game": "pnpm --filter create-remix-game publish",
+    "publish:all": "pnpm build && pnpm --filter @insidethesim/remix-dev publish && pnpm --filter create-remix-game publish"
   },
   "keywords": [
     "game",
