@@ -1,5 +1,14 @@
 # @insidethesim/remix-dev
 
+## 0.1.0
+
+### Minor Changes
+
+- Major updates:
+  - Upgrade to Vite 7.1.8
+  - Add React 19.2.0 and React-DOM 19.2.0 to scaffolded project templates to fix dependency resolution errors
+  - Remove React from Vite optimizeDeps.exclude list (no longer needed with React in template)
+
 ## 0.0.4
 
 ### Patch Changes

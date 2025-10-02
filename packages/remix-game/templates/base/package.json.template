@@ -18,9 +18,11 @@
   "license": "ISC",
   "devDependencies": {
     "@farcade/game-sdk": "^0.2",
-    "@insidethesim/remix-dev": "^0.0.4",
+    "@insidethesim/remix-dev": "^0.1.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "typescript": "^5.9.2",
-    "vite": "^6.3.6"
+    "vite": "^7.0.0"
   },
   "dependencies": {
     "phaser": "^3.90.0"

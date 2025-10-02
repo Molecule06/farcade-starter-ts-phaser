@@ -1,6 +1,6 @@
 {
   "name": "@insidethesim/remix-dev",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Development framework for Remix games",
   "type": "module",
   "main": "./dist/index.js",
@@ -76,7 +76,7 @@
     "@vitejs/plugin-react": "^5.0.4"
   },
   "peerDependencies": {
-    "vite": "^6.0.0",
+    "vite": "^7.0.0",
     "phaser": "^3.90.0"
   },
   "devDependencies": {
@@ -85,6 +85,6 @@
     "@types/react-dom": "^19.1.9",
     "@types/styled-components": "^5.1.34",
     "typescript": "^5.9.2",
-    "vite": "^6.3.6"
+    "vite": "^7.0.0"
   }
 }
