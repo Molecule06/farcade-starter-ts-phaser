@@ -2,9 +2,6 @@
  * Core initialization for Remix games
  */
 
-import { initializeSDKMock } from './mocks/RemixSDKMock'
-import { initializeDevelopment } from './utils/RemixUtils'
-
 export interface RemixConfig {
   multiplayer: boolean
   saveState?: boolean
@@ -14,21 +11,11 @@ export interface RemixConfig {
  * Initialize Remix framework for a Phaser game
  */
 export async function initRemix(game: Phaser.Game, config: RemixConfig): Promise<void> {
-  // Initialize SDK mock in development
-  if (process.env.NODE_ENV !== 'production') {
-    await initializeSDKMock()
-  }
-
   // Expose game globally for performance plugin
   ;(window as any).game = game
 
   // Initialize Remix SDK
   initializeRemixSDK(game)
-
-  // Initialize development features (only active in dev mode)
-  if (process.env.NODE_ENV !== 'production') {
-    initializeDevelopment()
-  }
 }
 
 function initializeRemixSDK(game: Phaser.Game): void {
@@ -62,6 +49,3 @@ function initializeRemixSDK(game: Phaser.Game): void {
   })
 }
 
-// Re-export for advanced usage
-export { initializeSDKMock } from './mocks/RemixSDKMock'
-export { initializeDevelopment } from './utils/RemixUtils'

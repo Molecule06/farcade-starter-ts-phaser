@@ -228,6 +228,17 @@ export class DemoScene extends Phaser.Scene {
       return
     }
 
+    // Verify SDK has the expected structure
+    const hasValidAPI =
+      typeof window.FarcadeSDK.on === 'function' &&
+      window.FarcadeSDK.singlePlayer?.actions?.ready
+
+    if (!hasValidAPI) {
+      console.warn('FarcadeSDK found but has unexpected structure, starting game without SDK')
+      this.createGameElements()
+      return
+    }
+
     // Determine multiplayer mode based on build configuration
     // In production, GAME_MULTIPLAYER_MODE will be replaced with true/false by build script
     try {
@@ -239,7 +250,7 @@ export class DemoScene extends Phaser.Scene {
       this.isMultiplayer = false
     }
 
-    // Set up SDK event listeners - just like chess.js does, no defensive checks
+    // Set up SDK event listeners
     window.FarcadeSDK.on('play_again', () => {
       this.restartGame()
       // Send reset state to other player after restart
@@ -332,23 +343,23 @@ export class DemoScene extends Phaser.Scene {
         this.createGameElements()
       }
     } else {
-      // Single player - call ready and await the game_info response
+      // Single player - call ready and await it
       try {
         const data = await window.FarcadeSDK.singlePlayer.actions.ready()
+
+        // Handle any response, including null/undefined
         if (data?.initialGameState?.gameState) {
           const state = data.initialGameState.gameState
           if (state.selectedColor) {
-            // Just update the property, don't call selectColor yet (balls don't exist)
             this.selectedColor = state.selectedColor
           }
         }
-        // Now create game elements after state is loaded
-        this.createGameElements()
       } catch (error) {
         console.error('Failed to initialize single player SDK:', error)
-        // Create game elements anyway if there's an error
-        this.createGameElements()
       }
+
+      // Always create game elements, regardless of SDK response
+      this.createGameElements()
     }
   }
 

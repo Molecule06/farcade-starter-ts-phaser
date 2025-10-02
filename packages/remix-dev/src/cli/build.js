@@ -4,11 +4,8 @@ import * as path from "path"
 import { fileURLToPath } from "url"
 import * as cheerio from "cheerio"
 
-// Get dirname in ESM
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const rootDir = path.resolve(__dirname, "..")
+// Get the user's project root (where the command was run)
+const rootDir = process.cwd()
 const distDir = path.join(rootDir, "dist")
 const srcDir = path.join(rootDir, "src")
 const htmlTemplatePath = path.join(rootDir, "index.html")
@@ -31,12 +28,11 @@ async function buildGame() {
       entryPoints: [path.join(srcDir, "main.ts")],
       bundle: true,
       external: ["phaser"],
-      format: "iife",
-      globalName: "Game",
+      format: "esm", // Use ESM to support top-level await
       outfile: tempJsPath,
       sourcemap: false,
       minify: true,
-      target: ["es2020"],
+      target: ["es2022"], // Updated to support top-level await
       pure: ["console.log"], // Temporarily disabled for debugging
       define: {
         'GAME_MULTIPLAYER_MODE': JSON.stringify(isMultiplayer),
@@ -62,9 +58,9 @@ async function buildGame() {
     // Replace any remaining references to require('phaser') with window.Phaser
     jsCode = jsCode.replace(/require\(['"]phaser['"]\)/g, "window.Phaser")
 
-    // Remove the development script tag and add our bundled code
+    // Remove the development script tag and add our bundled code as a module
     $('script[type="module"]').remove()
-    $("body").append(`<script>${jsCode}</script>`)
+    $("body").append(`<script type="module">${jsCode}</script>`)
 
     // Step 5: Process HTML but don't minify whitespace
     let htmlOutput = $.html()
