@@ -54,6 +54,8 @@ export function remixPlugin(options: RemixPluginOptions = {}): Plugin[] {
           resolve: {
             alias: {
               '@': path.resolve(process.cwd(), 'src'),
+              // In monorepo dev, map CSS import to source file
+              '@insidethesim/remix-dev/styles/remix-dev.css': path.join(remixDevSrcPath, 'main.css'),
             },
           },
           publicDir: 'public',

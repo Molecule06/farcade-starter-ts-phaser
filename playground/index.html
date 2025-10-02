@@ -13,7 +13,7 @@
         justify-content: center;
         align-items: center;
       }
-
+      
       canvas {
         outline: none;
         margin: 0;
@@ -24,7 +24,12 @@
     <script type="module">
       // Development only - build script replaces this entire block
       if (import.meta.env.DEV) {
-        import('@insidethesim/remix-dev/src/main.css')
+        // Load CSS for dev dashboard
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = '/node_modules/@insidethesim/remix-dev/dist/styles/remix-dev.css'
+        document.head.appendChild(link)
+
         import('@insidethesim/remix-dev/dev-init')
 
         // Only load the game in iframe, not in top window (dashboard handles iframes)

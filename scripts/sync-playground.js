@@ -95,7 +95,14 @@ playgroundPkg.devDependencies['@insidethesim/remix-dev'] = 'workspace:*'
 
 // Ensure vite is in devDependencies (read from template to get version)
 const templatePkgPath = path.join(templateDir, 'package.json.template')
-const templatePkg = JSON.parse(await fs.readFile(templatePkgPath, 'utf-8'))
+let templatePkgContent = await fs.readFile(templatePkgPath, 'utf-8')
+// Replace template variables before parsing
+templatePkgContent = templatePkgContent
+  .replace(/\{\{GAME_NAME\}\}/g, config.gameName)
+  .replace(/\{\{PROJECT_NAME\}\}/g, config.projectName)
+  .replace(/\{\{MULTIPLAYER\}\}/g, String(config.multiplayer))
+  .replace(/\{\{PACKAGE_MANAGER\}\}/g, config.packageManager)
+const templatePkg = JSON.parse(templatePkgContent)
 if (templatePkg.devDependencies.vite) {
   playgroundPkg.devDependencies.vite = templatePkg.devDependencies.vite
 }

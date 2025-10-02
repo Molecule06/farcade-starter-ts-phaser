@@ -11,6 +11,12 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  resolve: {
+    alias: {
+      // Allow dev-init to import CSS via package path in monorepo dev
+      '@insidethesim/remix-dev/styles/remix-dev.css': path.resolve(__dirname, 'src/main.css'),
+    },
+  },
   build: {
     lib: {
       entry: {

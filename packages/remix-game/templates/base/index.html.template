@@ -24,8 +24,18 @@
     <script type="module">
       // Development only - build script replaces this entire block
       if (import.meta.env.DEV) {
+        // Load CSS for dev dashboard
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = '/node_modules/@insidethesim/remix-dev/dist/styles/remix-dev.css'
+        document.head.appendChild(link)
+
         import('@insidethesim/remix-dev/dev-init')
-        import('/src/main.ts')
+
+        // Only load the game in iframe, not in top window (dashboard handles iframes)
+        if (window !== window.top) {
+          import('/src/main.ts')
+        }
       }
     </script>
   </body>
