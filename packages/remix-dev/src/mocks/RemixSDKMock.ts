@@ -572,6 +572,8 @@ class RemixDevHostController {
 
     switch (type) {
       case 'ready':
+        // Publish that the game called ready (so dashboard can track the SDK integration)
+        this.publishDevEvent('ready', {})
         this.handleReady(sourceWindow)
         break
       case 'save_game_state':

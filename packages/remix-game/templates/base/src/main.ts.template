@@ -1,6 +1,11 @@
 import { initRemix } from "@insidethesim/remix-dev"
+import { initializeSDKMock } from "@insidethesim/remix-dev/mocks"
 import { GameScene } from "./scenes/GameScene"
 import GameSettings from "./config/GameSettings"
+
+// Initialize SDK mock BEFORE creating the game
+// This ensures window.FarcadeSDK exists when scenes are created
+await initializeSDKMock()
 
 // Game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -29,7 +34,7 @@ const config: Phaser.Types.Core.GameConfig = {
 // Create the game instance
 const game = new Phaser.Game(config)
 
-// Initialize Remix framework
+// Initialize Remix framework after game is created
 game.events.once("ready", () => {
   initRemix(game, {
     multiplayer: {{MULTIPLAYER}}

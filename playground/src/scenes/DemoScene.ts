@@ -222,8 +222,10 @@ export class DemoScene extends Phaser.Scene {
   }
 
   private async initializeSDK(): Promise<void> {
+    console.log('[DemoScene] initializeSDK() called, FarcadeSDK exists:', !!window.FarcadeSDK)
     if (!window.FarcadeSDK) {
       // No SDK, create elements immediately
+      console.log('[DemoScene] No SDK found, creating elements immediately')
       this.createGameElements()
       return
     }
@@ -265,7 +267,7 @@ export class DemoScene extends Phaser.Scene {
     if (this.isMultiplayer) {
       // Multiplayer setup - Set up listeners BEFORE calling ready
       window.FarcadeSDK.on('game_state_updated', (gameState: any) => {
-        
+
         // Handle it exactly like chess.js does
         if (!gameState) {
           this.setupNewGame()
@@ -273,7 +275,7 @@ export class DemoScene extends Phaser.Scene {
           this.handleGameStateUpdate(gameState)
         }
       })
-      
+
       // Add listener for state loading
       window.FarcadeSDK.on('load_state', (state: any) => {
         if (state) {
@@ -288,7 +290,7 @@ export class DemoScene extends Phaser.Scene {
           }
         }
       })
-      
+
       // Also listen for restore_game_state events
       window.FarcadeSDK.on('restore_game_state', (data: any) => {
         if (data?.gameState) {
@@ -305,8 +307,9 @@ export class DemoScene extends Phaser.Scene {
         }
       })
 
-      // Call multiplayer ready - no defensive checks, just like chess.js
-      window.FarcadeSDK.multiplayer.actions.ready().then((data: any) => {
+      // Call multiplayer ready and await the response
+      try {
+        const data = await window.FarcadeSDK.multiplayer.actions.ready()
         if (data.players) {
           this.players = data.players
         }
@@ -325,14 +328,17 @@ export class DemoScene extends Phaser.Scene {
         setTimeout(() => {
           this.sendGameState()
         }, 100)
-      }).catch((error: any) => {
+      } catch (error) {
+        console.error('Failed to initialize multiplayer SDK:', error)
         // Create game elements anyway if there's an error
         this.createGameElements()
-      })
+      }
     } else {
-      // Single player - call ready
       // Single player - call ready and await the game_info response
-      window.FarcadeSDK.singlePlayer.actions.ready().then((data: any) => {
+      try {
+        console.log('[DemoScene] Calling SDK.singlePlayer.actions.ready()')
+        const data = await window.FarcadeSDK.singlePlayer.actions.ready()
+        console.log('[DemoScene] Received game_info:', data)
         if (data?.initialGameState?.gameState) {
           const state = data.initialGameState.gameState
           if (state.selectedColor) {
@@ -342,10 +348,11 @@ export class DemoScene extends Phaser.Scene {
         }
         // Now create game elements after state is loaded
         this.createGameElements()
-      }).catch((error: any) => {
+      } catch (error) {
+        console.error('Failed to initialize single player SDK:', error)
         // Create game elements anyway if there's an error
         this.createGameElements()
-      })
+      }
     }
   }
 

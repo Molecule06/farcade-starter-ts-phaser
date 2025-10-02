@@ -161,6 +161,27 @@ All complexity (dashboard, dev server, build process, SDK mocks) is handled by t
 3. Test in playground: `pnpm dev:playground`
 4. The playground uses `workspace:*`, so changes are immediately available
 
+### Testing Template Changes
+
+**IMPORTANT**: The `playground/` directory is **transient** - it gets overwritten by the sync command. Never make changes directly in `playground/`.
+
+To update game templates:
+1. Edit source files in `packages/remix-game/templates/base/`
+2. Run `pnpm sync:playground` to copy template changes to playground
+3. Test with `pnpm dev` (from root)
+
+Example:
+```bash
+# Edit the template
+vim packages/remix-game/templates/base/src/scenes/DemoScene.ts
+
+# Sync changes to playground
+pnpm sync:playground
+
+# Test in playground
+pnpm dev
+```
+
 ### Testing CLI Changes
 
 1. Make changes in `packages/remix-game/src/`
