@@ -36,6 +36,13 @@ export async function scaffold(targetPath: string, config: ScaffoldConfig): Prom
   // Process template files
   await processTemplates(targetPath, config)
 
+  // Rename gitignore to .gitignore (npm strips .gitignore from packages)
+  const gitignorePath = path.join(targetPath, 'gitignore.template')
+  const dotGitignorePath = path.join(targetPath, '.gitignore')
+  if (await fs.pathExists(gitignorePath)) {
+    await fs.move(gitignorePath, dotGitignorePath)
+  }
+
   console.log(chalk.cyan('✓ Configuration applied'))
 }
 

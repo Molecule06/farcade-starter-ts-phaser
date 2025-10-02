@@ -1,5 +1,11 @@
 # create-remix-game
 
+## 0.0.6
+
+### Patch Changes
+
+- Fix .gitignore file not being included in scaffolded projects. Renamed template to gitignore.template and process during scaffolding to work around npm package restrictions.
+
 ## 0.0.5
 
 ### Patch Changes
