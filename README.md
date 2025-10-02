@@ -203,20 +203,37 @@ Keep a backup of your original game until confident the migration works!
 
 ## Building for Production
 
+### Using the Dashboard (Recommended)
+
+The easiest way to build your game is through the development dashboard:
+
+1. **Start dev server**: `npm run dev`
+2. **Click "Build"** in the dashboard toolbar
+3. **Wait for build** - Progress shown in real-time
+4. **Copy HTML** - Click "Copy" to copy the entire build to clipboard
+5. **Deploy** - Paste into Remix platform and publish!
+
+The dashboard build feature gives you:
+- ✅ One-click builds without leaving the browser
+- ✅ Instant preview of the built game
+- ✅ Copy-to-clipboard for easy deployment
+- ✅ Build status and error reporting
+
+### Using the Command Line
+
+You can also build from the terminal:
+
 ```bash
 npm run build
 ```
 
 This creates `dist/index.html` - a single self-contained file with your entire game.
 
-### Deployment to Remix
-
-1. Build: `npm run build`
-2. Open: `dist/index.html`
-3. Copy: Select all and copy contents
-4. Paste: Into Remix platform editor
-5. Test: Verify game works on platform
-6. Publish: Release to players!
+Then manually:
+1. Open: `dist/index.html` in a text editor
+2. Copy: Select all and copy contents
+3. Paste: Into Remix platform editor
+4. Publish: Release to players!
 
 ## Development Environment Features
 
@@ -247,7 +264,6 @@ Live metrics available in dashboard:
 
 - Canvas scaling (fill screen vs actual size)
 - Background pattern toggle
-- Device-specific settings (canvas glow on supported devices)
 
 ## Monorepo Structure
 
