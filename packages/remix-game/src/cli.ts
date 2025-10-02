@@ -45,8 +45,8 @@ async function main() {
         name: 'packageManager',
         message: 'Package manager:',
         choices: [
-          { title: 'pnpm', value: 'pnpm' },
           { title: 'npm', value: 'npm' },
+          { title: 'pnpm', value: 'pnpm' },
           { title: 'yarn', value: 'yarn' },
           { title: 'bun', value: 'bun' },
         ],
