@@ -1,5 +1,11 @@
 # create-remix-game
 
+## 0.0.4
+
+### Patch Changes
+
+- Update template to use @insidethesim/remix-dev@^0.0.4 with React fixes
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @insidethesim/remix-dev
 
+## 0.0.4
+
+### Patch Changes
+
+- Fix React dependency issues:
+  - Pin React and React-DOM to exact version 19.2.0 to prevent version mismatches
+  - Exclude React from Vite's optimizeDeps to avoid resolution errors
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@insidethesim/remix-dev",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Development framework for Remix games",
   "type": "module",
   "main": "./dist/index.js",
@@ -63,8 +63,8 @@
     "access": "public"
   },
   "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "styled-components": "^6.1.19",
     "@tailwindcss/vite": "^4.1.13",
     "tailwindcss": "^4.1.13",
