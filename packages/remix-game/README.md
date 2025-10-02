@@ -1,11 +1,11 @@
-# @insidethesim/remix-game
+# create-remix-game
 
 CLI for scaffolding Remix games.
 
 ## Usage
 
 ```bash
-npx remix-game my-awesome-game
+npx create-remix-game my-awesome-game
 ```
 
 This will:

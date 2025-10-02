@@ -8,7 +8,7 @@ This is a **monorepo** for the Remix game development framework. It transforms t
 
 **Architecture:**
 - `@insidethesim/remix-dev` - Published npm package containing the development framework
-- `@insidethesim/remix-game` - CLI tool for scaffolding new games via `npx remix-game`
+- `create-remix-game` - CLI tool for scaffolding new games via `npx create-remix-game`
 - `playground/` - Development workspace for testing the framework (uses `workspace:*`)
 
 ## Key Commands
@@ -31,10 +31,10 @@ pnpm clean
 # Test CLI locally
 pnpm test:cli:local
 
-# Publishing (after building)
-pnpm publish:remix-dev
-pnpm publish:remix-game
-pnpm publish:all
+# Version management (using Changesets)
+pnpm changeset           # Create a new changeset
+pnpm version            # Bump versions based on changesets
+pnpm release            # Build and publish all packages
 ```
 
 ### Individual Packages
@@ -83,7 +83,7 @@ remix-starter/
 │   │   └── bin/
 │   │       └── remix-dev.js    # CLI entry point
 │   │
-│   └── remix-game/             # @insidethesim/remix-game
+│   └── remix-game/             # create-remix-game
 │       ├── src/
 │       │   ├── cli.ts          # Main CLI logic
 │       │   ├── scaffold.ts     # Project scaffolding
@@ -131,7 +131,7 @@ import { useGameSDK } from '@insidethesim/remix-dev/hooks'
 
 ### User-Facing Workflow
 
-When users run `npx remix-game my-game`, they get a minimal project structure:
+When users run `npx create-remix-game my-game`, they get a minimal project structure:
 
 ```typescript
 // Their main.ts
@@ -275,35 +275,88 @@ Template files in `packages/remix-game/templates/base/` use placeholders:
 
 Files ending in `.template` are processed and renamed during scaffolding.
 
-## Publishing Workflow
+## Publishing Workflow (using Changesets)
 
-1. **Build packages:**
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versions and changelogs.
+
+### Creating a Release
+
+1. **Make your changes** and commit them to a feature branch
+
+2. **Create a changeset** to declare which packages changed and how:
    ```bash
-   pnpm build
+   pnpm changeset
    ```
 
-2. **Publish remix-dev first:**
+   This will prompt you:
+   - Which packages have changed? (select with spacebar)
+   - Is this a patch, minor, or major change?
+   - What changed? (used for changelog)
+
+3. **Commit the changeset** file:
    ```bash
-   cd packages/remix-dev
-   pnpm version minor  # or patch/major
-   pnpm publish --access public
+   git add .changeset/
+   git commit -m "Add changeset for X feature"
    ```
 
-3. **Update templates in remix-game:**
-   - Update `templates/base/package.json` to use new remix-dev version
+4. **Merge to main** branch
 
-4. **Publish remix-game:**
+5. **Version packages** (updates package.json versions and changelogs):
    ```bash
-   cd packages/remix-game
-   pnpm version patch
-   pnpm publish --access public
+   pnpm version
    ```
 
-5. **Tag release:**
+   This will:
+   - Update versions in package.json files
+   - Update CHANGELOG.md files
+   - Delete consumed changeset files
+   - Update dependent packages (e.g., template's dependency on remix-dev)
+
+6. **Commit version changes**:
    ```bash
-   git tag v0.x.0
-   git push origin main --tags
+   git add .
+   git commit -m "Version packages"
+   git push
    ```
+
+7. **Publish to npm**:
+   ```bash
+   pnpm release
+   ```
+
+   This will:
+   - Build all packages
+   - Publish changed packages to npm
+   - Create git tags for published versions
+
+8. **Push tags**:
+   ```bash
+   git push --tags
+   ```
+
+### Quick Release (if you're in a hurry)
+
+```bash
+# 1. Create changeset
+pnpm changeset
+
+# 2. Commit it
+git add . && git commit -m "Add changeset"
+
+# 3. Version and publish
+pnpm version
+git add . && git commit -m "Version packages"
+pnpm release
+git push --tags
+```
+
+### Changesets Benefits
+
+- **Automatic dependency updates**: When `@insidethesim/remix-dev` version bumps, the template's dependency is automatically updated
+- **Changelog generation**: CHANGELOG.md files are generated automatically
+- **Monorepo-aware**: Understands package relationships and dependencies
+- **Git tags**: Automatically creates version tags
+- **Prevents mistakes**: Can't publish without a changeset
 
 ## Migration Strategy
 
@@ -318,7 +371,7 @@ npm run remix-setup
 
 **New workflow:**
 ```bash
-npx remix-game my-game
+npx create-remix-game my-game
 cd my-game
 pnpm dev
 ```

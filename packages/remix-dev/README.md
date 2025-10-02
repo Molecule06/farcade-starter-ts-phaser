@@ -15,7 +15,7 @@ npm install @insidethesim/remix-dev
 Use the CLI to scaffold a new game:
 
 ```bash
-npx remix-game my-awesome-game
+npx create-remix-game my-awesome-game
 cd my-awesome-game
 npm run dev
 ```

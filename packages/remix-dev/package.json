@@ -1,6 +1,6 @@
 {
   "name": "@insidethesim/remix-dev",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Development framework for Remix games",
   "type": "module",
   "main": "./dist/index.js",

@@ -14,9 +14,9 @@
     "sync:playground": "node scripts/sync-playground.js",
     "test:cli": "pnpm --filter create-remix-game build && node packages/remix-game/bin/remix-game.js",
     "test:cli:local": "pnpm build:remix-game && node scripts/test-cli-local.js",
-    "publish:remix-dev": "pnpm --filter @insidethesim/remix-dev publish",
-    "publish:remix-game": "pnpm --filter create-remix-game publish",
-    "publish:all": "pnpm build && pnpm --filter @insidethesim/remix-dev publish && pnpm --filter create-remix-game publish"
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "keywords": [
     "game",
@@ -28,6 +28,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "fs-extra": "^11.2.0",
     "typescript": "^5.9.2"
   }
